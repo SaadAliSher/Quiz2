@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<label>Enter Number</label>
+		<input type="number" id="num" /><br />
+		<button onclick="fun()">Click Me</button><br />
+		<p id="p"></p>
+		<script>
+			let elm = document.getElementById("p");
+			function fun() {
+				let num = +document.getElementById("num").value;
+				if (num > 2) {
+					num = (num - 2) * 180;
+				} else {
+					num = 0;
+				}
+				elm.innerHTML = "The sum of interior angles of an N-sided polygon: " + num;
+			}
+		</script>
+	</body>
+</html>

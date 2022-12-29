@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<label>Enter Number</label>
+		<input type="number" id="num" /><br />
+		<label>How many decimal values you want</label>
+		<input type="number" id="decimalValue" /><br />
+		<button onclick="fun()">Click Me</button><br />
+		<p id="p"></p>
+		<script>
+			function fun() {
+				let num = +document.getElementById("num").value;
+				let dValue = +document.getElementById("decimalValue").value;
+				let elm = document.getElementById("p");
+				let n = "";
+
+				n = (num - Math.floor(num)).toString();
+				console.log(n);
+				let decimalValue = "";
+				for (let i = 0; i < dValue + 2; i++) {
+					decimalValue += n[i];
+				}
+				num = Math.floor(num) + parseFloat(decimalValue);
+				console.log(num);
+			}
+		</script>
+	</body>
+</html>

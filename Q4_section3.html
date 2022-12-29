@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<label>Enter day</label>
+		<input type="number" id="day" /><br />
+		<label>Enter month</label>
+		<input type="number" id="month" /><br />
+		<label>Enter year</label>
+		<input type="number" id="year" /><br />
+		<button onclick="fun()">Click Me</button><br />
+		<p id="p"></p>
+		<script>
+			var age = new Array();
+			var tday = 29,
+				tmonth = 12,
+				tyear = 2022;
+
+			function fun() {
+				let day = +document.getElementById("day").value;
+				let month = +document.getElementById("month").value;
+				let year = +document.getElementById("year").value;
+				let elm = document.getElementById("p");
+				if ((month >= 0 && month < 13) || (day >= 0 && day < 32)) {
+					if (tyear >= year) {
+						if (tmonth <= month) {
+							age[0] = tyear - year;
+							if (tmonth == month && tday == day) {
+								age[1] = tmonth - month;
+							} else if (tmonth == month) {
+								age[1] = tmonth - month;
+							} else {
+								age[1] = tmonth + 12 - month;
+							}
+							if (tday < day) {
+								age[2] = tday;
+							} else if (tday >= day) {
+								age[2] = tday - day;
+							}
+						} else {
+							age[0] = tyear - year;
+							if (tmonth == month && tday == day) {
+								age[1] = tmonth - month - 1;
+							} else {
+								age[1] = tmonth - month;
+							}
+							if (tday < day) {
+								age[2] = tday;
+							} else if (tday >= day) {
+								age[2] = tday - day;
+							}
+						}
+						elm.innerHTML = age[0] + " Years, " + age[1] + " Months, " + age[2] + " Days";
+					} else {
+						alert("Please Enter Valid Age");
+					}
+				} else {
+					alert("Please Enter Valid Age");
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matrices Multiplication</title>
+	</head>
+	<body>
+		<label>Enter No. of rows for 1st Matrix</label>
+		<input type="number" id="row1" /><br /><br />
+		<label>Enter No. of columns for 1st Matrix</label>
+		<input type="number" id="col1" /><br /><br />
+		<label>Enter No. of rows for 2nd Matrix</label>
+		<input type="number" id="row2" /><br /><br />
+		<label>Enter No. of columns for 2nd Matrix</label>
+		<input type="number" id="col2" /><br /><br />
+		<button onclick="checkOrder()">Check Order</button><br /><br />
+
+		<!-- <label>Matrix 1 Data</label>
+		<input type="number" id="matrix1data" />
+		<button onclick="displayMatrix1()">displayMatrix1</button>
+		<p id="matrix1"></p>
+			<br /><br />  -->
+		<label>Press button for enter Matrix1 Data </label>
+		<button onclick="matrix1data()" id="matrix1btn">matrix1data</button><br /><br />
+
+		<!-- <label>Matrix 2 Data</label>
+		<input type="number" id="matrix2data" />
+		<button onclick="displayMatrix2()">displayMatrix2</button> -->
+		<label>Press button for enter Matrix2 Data </label>
+		<button onclick="matrix2data()" id="matrix2btn">matrix2data</button><br /><br />
+		<!-- <p id="matrix2"></p>
+		<br /><br /> -->
+		<button onclick="multiplyMartix()">multiplyMartix</button><br /><br />
+		<div id="result"></div>
+		<script>
+			var check = false;
+			var count = 0,
+				checkValueMartix1 = 0,
+				checkValueMatrix2 = 0;
+
+			var matrix1arr = new Array();
+			var matrix2arr = new Array();
+
+			function checkOrder() {
+				var row1 = document.getElementById("row1").value;
+				var col1 = document.getElementById("col1").value;
+				var row2 = document.getElementById("row2").value;
+				var col2 = document.getElementById("col2").value;
+				if (row1 == "" || col1 == "" || row2 == "" || col2 == "") {
+					alert("Feilds Cannot be empty");
+				} else {
+					if (col1 == row2) {
+						check = true;
+
+						alert("Matrix order created");
+					} else {
+						alert("Matrix multiplication is not possible on given matrix order");
+						check = false;
+					}
+				}
+			}
+			function matrix1data() {
+				if (check == true) {
+					for (var i = 0; i < row1.value * col1.value; i++) {
+						let matrix1data = prompt("Enter Matrix1 Data: ");
+						matrix1arr.push(matrix1data);
+					}
+					if (row1.value * col1.value == checkValueMartix1) {
+						document.getElementById("matrix1btn").disabled = true;
+					}
+					console.log("Matrix1 array " + matrix1arr);
+				} else {
+					alert("Please First Enter Matrix rows and column");
+				}
+			}
+			function matrix2data() {
+				if (check == true) {
+					for (var i = 0; i < row2.value * col2.value; i++) {
+						let matrix2data = prompt("Enter Matrix2 Data: ");
+						matrix2arr.push(matrix2data);
+					}
+					if (row2.value * col2.value == checkValueMatrix2) {
+						document.getElementById("matrix2btn").disabled = true;
+					}
+					console.log("Matrix2 array " + matrix2arr);
+				} else {
+					alert("Please First Enter Matrix rows and column");
+				}
+			}
+			function multiplyMartix() {
+				const newArr1 = [];
+				while (matrix1arr.length) newArr1.push(matrix1arr.splice(0, col1.value));
+				console.log(newArr1);
+				const newArr2 = [];
+				while (matrix2arr.length) newArr2.push(matrix2arr.splice(0, col2.value));
+				console.log(newArr2);
+
+				var result = [];
+				for (var i = 0; i < newArr1.length; i++) {
+					result[i] = [];
+					console.log(newArr2[0].length);
+					for (var j = 0; j < newArr2[0].length; j++) {
+						var sum = 0;
+						for (var k = 0; k < newArr1[0].length; k++) {
+							sum += newArr1[i][k] * newArr2[k][j];
+						}
+						result[i][j] = sum;
+					}
+				}
+				console.log(result);
+
+				var res = document.getElementById("result");
+				res.innerHTML = "";
+				for (var i = 0; i < result[i].length; i++) {
+					for (var z = 0; z < result.length; z++) {
+						res.innerHTML += result[z][i] + "     ";
+					}
+					res.innerHTML += "<br>";
+				}
+			}
+		</script>
+	</body>
+</html>
